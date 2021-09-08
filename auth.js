@@ -11,6 +11,7 @@ module.exports.createAccessToken = (user) => {
 	}
 
 	return jwt.sign(data, secret, {});
+	
 }
 
 // to verify token
