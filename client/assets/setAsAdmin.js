@@ -18,6 +18,7 @@ fetch(`http://localhost:3000/api/users/${userId}/setAsAdmin`,
 	console.log(result)
 
 	if (result === true) {
+		
 		alert(`User account set to admin`)
 		window.location.replace(`./users.html`)
 	} else {

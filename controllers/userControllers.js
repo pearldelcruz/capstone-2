@@ -86,8 +86,8 @@ module.exports.setAsAdmin = (params)=> {
 	let updatedUserType = {
 		isAdmin : false
 	}
-
-	return User.findByIdAndUpdate(params, updatedUserType, {new: true}).then((result, error) => {
+	return User.findByIdAndUpdate({"_id":`${params}`}, {"isAdmin":true}).then((result, error) => {
+	// return User.findByIdAndUpdate(params, updatedUserType, {new: true}).then((result, error) => {
 		if (error) {
 			return false
 		} else {
