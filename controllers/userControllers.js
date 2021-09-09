@@ -73,9 +73,18 @@ module.exports.getProfile = (data) =>{
 	})
 }
 
-module.exports.getNonAdmin = ()=>{
+//to retrieve all non-admin
+/*module.exports.getNonAdmin = ()=>{
 
 	return User.find({isAdmin: false}).then(result =>{
+		return result
+	})
+}*/
+
+//to retrieve all users
+module.exports.getAllUsers = ()=>{
+
+	return User.find().then(result =>{
 		return result
 	})
 }
@@ -84,14 +93,71 @@ module.exports.getNonAdmin = ()=>{
 module.exports.setAsAdmin = (params)=> {
 
 	let updatedUserType = {
-		isAdmin : false
+		isAdmin : true
 	}
-	return User.findByIdAndUpdate({"_id":`${params}`}, {"isAdmin":true}).then((result, error) => {
-	// return User.findByIdAndUpdate(params, updatedUserType, {new: true}).then((result, error) => {
+	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":true}).then((result, error) => {
+	return User.findByIdAndUpdate(params, updatedUserType, {new: true}).then((result, error) => {
 		if (error) {
 			return false
 		} else {
 			return result
 		}
 	})
+}
+
+
+//to switch user isAdmin false to true
+module.exports.unsetAsAdmin = (params)=> {
+
+	let userType = {
+		isAdmin : false
+	}
+	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":false}).then((result, error) => {
+	return User.findByIdAndUpdate(params, userType, {new: true}).then((result, error) => {
+		if (error) {
+			return false
+		} else {
+			return true
+		}
+	})
+}
+
+//to place order
+
+module.exports.checkout = async (data) => {
+
+	//save user order
+	const userSavedOrder = await User.findById(data.userId).then( user => {
+		// console.log(user)
+		user.orders.push({productId: data.productId})
+
+		return user.save().then( (user, error) => {
+			console.log(user)
+			if(error){
+				return false
+			} else {
+				return true
+			}
+		})
+	})
+
+	//save orders by users
+	const orderByUsers = await Product.findById(data.productId).then( product => {
+		product.orders.push({userId: data.userId})
+
+		return product.save().then( (product, error) => {
+			console.log(product)
+			if(error){
+				return false
+			} else {
+				return true
+			}
+		})
+	})
+
+	if(userSavedOrder && orderByUsers){
+		return true
+	} else {
+		return false
+	}
 }

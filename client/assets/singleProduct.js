@@ -1,8 +1,7 @@
 
-console.log(window.location.search);
+// console.log(window.location.search);
 let params = new URLSearchParams(window.location.search); 
-//method of URLSearchParams
-	//URLSearchParams.get()
+
 console.log(params.id);
 let productId = params.get('productId');
 console.log(productId);
@@ -34,12 +33,12 @@ fetch(`http://localhost:3000/api/products/${productId}`,
 	price.innerHTML = result.price
 	productContainer.innerHTML =
 	`
-		<button class="btn btn-primary btn-block" id="addToCart">Add to cart</button>
+		<button class="btn btn-success btn-block" id="addToCart">Add to cart</button>
 	`
 	let addToCart = document.querySelector(`#addToCart`);
 
 	addToCart.addEventListener("click",()=>{
-		fetch(`http://localhost:3000/api/users/singleProduct`,
+		fetch(`http://localhost:3000/api/users/checkout`,
 		{
 			method:"POST",
 			headers:{

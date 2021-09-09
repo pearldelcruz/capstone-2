@@ -48,15 +48,17 @@ fetch("http://localhost:3000/api/products/allProducts",
 				console.log(product);
 
 				if(adminUser === false || !adminUser){
+
 					cardFooter =
 					`
 						<a href="./singleProduct.html?productId=${product._id}" class="btn btn-success text-white btn-block selectButton">
-							Select item
+							Select Item
 						</a>
 					`
+
 				} else {
 					
-					if(product.isActive == true){
+					if(product.isActive === true){
 						cardFooter = 
 						`
 							<a href="./editProduct.html?productId=${product._id}" class="btn btn-primary text-white btn-block editButton">

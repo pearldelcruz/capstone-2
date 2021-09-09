@@ -29,7 +29,7 @@ let userSchema = new mongoose.Schema(
 		orders: 
 		[{
 			
-			orderId: {
+			productId: {
 				type: String,
 				required: [true, `Order ID is required`]
 			},

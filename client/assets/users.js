@@ -24,7 +24,7 @@ let cardFooter;
 	`
 }
 */
-fetch("http://localhost:3000/api/users/getNonAdmin", 
+fetch("http://localhost:3000/api/users/getAllUsers", 
 	{
 		method: "GET",
 		headers: {
@@ -48,25 +48,32 @@ fetch("http://localhost:3000/api/users/getNonAdmin",
 			userData = result.map( (users) => {
 				console.log(users);
 
-				if(adminUser === true || adminUser){
 
-					cardFooter =
-					`
-						<a href="./setAsAdmin.html?userId=${users._id}" class="btn btn-success text-white btn-block selectButton">
-							Set as admin
-						</a>
-					`
-				} 
-				else {
+				// if(adminUser === false || !adminUser){
+				// 	cardFooter = null
+				// } 
+				// else {
+					
+					if(users.isAdmin == true){
+						cardFooter =
 
-					cardFooter =
-					`
-						<a href="./unsetAsAdmin.html??userId=${users._id}" class="btn btn-success text-white btn-block unarchiveButton">
-							Remove as admin
-						</a>
-					`
+						`
+							<a href="./unsetAsAdmin.html?userId=${users._id}" class="btn btn-danger text-white btn-block removeAdminButton">
+								Remove as admin
+							</a>
+						`
+					} else {
+						cardFooter =
+						`
+							<a href="./setAsAdmin.html?userId=${users._id}" class="btn btn-success text-white btn-block setAsAdminButton">
+								Set as admin
+							</a>
+													
+						`
+					}
+				// }
+			
 
-				}
 				return (
 					`
 						<div class="col-md-6 my-5">
