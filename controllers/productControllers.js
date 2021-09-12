@@ -1,7 +1,7 @@
 
 
 const Product = require(`./../models/Products`);
-const User = require(`./../models/Users`);
+// const User = require(`./../models/Users`);
 
 
 
@@ -33,21 +33,20 @@ module.exports.allProducts = () => {
 	})
 }
 
+// get all active product
+module.exports.activeProducts = () => {
+	
+	return Product.find({isActive:true}).then( result => {
+		return result
+	})	
+}
+
 //to get single item/product
 module.exports.singleProduct = (params) => {
 
 	// console.log(params)
 	return Product.findById(params.productId).then( (result) => {
 	return result
-	})
-}
-
-//to get all unarchived/active products
-
-module.exports.activeProduct = ()=>{
-	
-	return Product.find({isActive: true}).then( result => {
-		return result
 	})
 }
 
@@ -74,7 +73,6 @@ module.exports.editProduct = (params, reqBody) => {
 
 
 //to archive products
-
 module.exports.archive = (params)=> {
 
 	let archiveProduct = {
@@ -98,6 +96,18 @@ module.exports.unarchive = (params)=> {
 	}
 
 	return Product.findByIdAndUpdate(params, unarchiveProduct, {new: true}).then((result, error) => {
+		if (error) {
+			return false
+		} else {
+			return true
+		}
+	})
+}
+
+// to delete product
+module.exports.deleteProduct = (params)=> {
+
+	return Product.findByIdAndDelete(params).then((result, error) => {
 		if (error) {
 			return false
 		} else {

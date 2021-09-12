@@ -5,7 +5,7 @@ console.log(userId);
 
 let token = localStorage.getItem('token');
 
-fetch(`http://localhost:3000/api/users/${userId}/unsetAsAdmin`,
+fetch(`http://localhost:3000/api/users/${userId}/remove-admin-access`,
 	{
 		method: "PUT",
 		headers: {

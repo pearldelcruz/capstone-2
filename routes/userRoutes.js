@@ -35,14 +35,14 @@ router.post(`/login`,(req,res)=>{
 router.get(`/profile`, auth.verify,(req,res)=>{
 
 	const userData = auth.decode(req.headers.authorization)
-	// console.log(userData);
+	console.log(userData.firstName);
 	
 
 	userController.getProfile(userData.id).then(result => res.send(result))
 })
 
-//to retrieve all non-admin
-/*router.get("/getNonAdmin", auth.verify, (req, res) => {
+/*//to retrieve all non-admin
+router.get("/getNonAdmin", auth.verify, (req, res) => {
 
 	userController.getNonAdmin().then( result => res.send(result))
 })*/
@@ -51,9 +51,9 @@ router.get(`/profile`, auth.verify,(req,res)=>{
 router.get("/getAllUsers", auth.verify, (req, res) => {
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
-	console.log(userData)
-	// let userType = userData.isAdmin
-	// console.log(userType)
+	// console.log(userData)
+			// let userType = userData.isAdmin
+			// console.log(userType)
 	if (userData === false || userData === null ) {
 		console.log("User not authorized")
 	}
@@ -67,9 +67,9 @@ router.put('/:userId/setAsAdmin', auth.verify,(req,res)=>{
 	console.log(req.params.userId)
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
-	console.log(userData)
-	/*let userType = userData.isAdmin
-	console.log(userType)*/
+	// console.log(userData)
+			/*let userType = userData.isAdmin
+			console.log(userType)*/
 	if (userData === false || userData === null ) {
 		console.log("User not authorized")
 	}
@@ -80,7 +80,7 @@ router.put('/:userId/setAsAdmin', auth.verify,(req,res)=>{
 })
 
 //to switch user isAdmin false to true
-router.put('/:userId/unsetAsAdmin', auth.verify,(req,res)=>{
+router.put('/:userId/remove-admin-access', auth.verify,(req,res)=>{
 	console.log(req.params.userId)
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
@@ -96,6 +96,10 @@ router.put('/:userId/unsetAsAdmin', auth.verify,(req,res)=>{
 
 })
 
+
+//----Orders -----//
+
+/*//to place order
 router.post(`/checkout`, auth.verify,(req,res)=>{
 	let userData = auth.decode(req.headers.authorization).isAdmin
 		console.log(userData)
@@ -114,5 +118,30 @@ router.post(`/checkout`, auth.verify,(req,res)=>{
 	}
 	
 })
+
+
+//check order
+
+router.get(`/myOrder`, auth.verify, (req, res)=>{
+
+	userController.myOrder(req.params.userId).then(result => res.send(result));	
+
+})
+
+router.get(`/orders`, auth.verify, (req, res)=>{
+
+	let userData = auth.decode(req.headers.authorization).isAdmin
+	console.log(userData)
+	if (userData === false || userData === null ) {
+		console.log("User not authorized")
+	}
+	else {
+
+	userController.orders().then(result => res.send(result));	
+	}
+
+})*/
+
+
 
 module.exports = router;

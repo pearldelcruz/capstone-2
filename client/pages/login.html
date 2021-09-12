@@ -43,19 +43,24 @@
 	<!-- registration form -->
 
 	<div class="container-fluid">
-			<h1 class="text-center my-5">Log in</h1>
+			<h1 class="text-center my-5">Please sign in</h1>
 			<div class="row justify-content-center mb-5">
-				<div class="col-12 col-md-5">
+				<div class="col-12 col-md-3">
 					<form id="userLogin" class=" mb-5">
 						<div class="form-group">
-							<label for="email">Email Address</label>
-						    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+							<!-- <label for="email"></label> -->
+						    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email Address" required>
 						</div>
 						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" required>
+							<!-- <label for="password"></label> -->
+							<input type="password" class="form-control" id="password" placeholder="Password" required>
 						</div>
-					  <button type="submit" class="btn btn-success">Submit</button>
+						<div class="checkbox mb-3">
+						        <label>
+						          <input type="checkbox" value="remember-me"> Remember me
+						        </label>
+						      </div>
+					  <button type="submit" class="btn btn-success col-md-12">Sign in</button>
 					</form>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 
 const User = require(`./../models/Users`);
-const Product = require(`./../models/Products`);
+// const Product = require(`./../models/Products`);
 const bcrypt = require(`bcrypt`);
 
 
@@ -64,12 +64,12 @@ module.exports.login =(reqBody) => {
 }
 
 //user profile
-
 module.exports.getProfile = (data) =>{
 
 	return User.findById(data).then(result => {
 		result.password = "******"
 		return result
+	
 	})
 }
 
@@ -79,24 +79,25 @@ module.exports.getProfile = (data) =>{
 	return User.find({isAdmin: false}).then(result =>{
 		return result
 	})
-}*/
-
+}
+*/
 //to retrieve all users
 module.exports.getAllUsers = ()=>{
 
 	return User.find().then(result =>{
 		return result
+
 	})
 }
 
 //to switch user isAdmin false to true
 module.exports.setAsAdmin = (params)=> {
 
-	let updatedUserType = {
+	let userType1 = {
 		isAdmin : true
 	}
 	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":true}).then((result, error) => {
-	return User.findByIdAndUpdate(params, updatedUserType, {new: true}).then((result, error) => {
+	return User.findByIdAndUpdate(params, userType1, {new: true}).then((result, error) => {
 		if (error) {
 			return false
 		} else {
@@ -109,11 +110,11 @@ module.exports.setAsAdmin = (params)=> {
 //to switch user isAdmin false to true
 module.exports.unsetAsAdmin = (params)=> {
 
-	let userType = {
+	let userType2 = {
 		isAdmin : false
 	}
 	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":false}).then((result, error) => {
-	return User.findByIdAndUpdate(params, userType, {new: true}).then((result, error) => {
+	return User.findByIdAndUpdate(params, userType2, {new: true}).then((result, error) => {
 		if (error) {
 			return false
 		} else {
@@ -124,7 +125,8 @@ module.exports.unsetAsAdmin = (params)=> {
 
 //to place order
 
-module.exports.checkout = async (data) => {
+/*module.exports.checkout = async (data) => {
+
 
 	//save user order
 	const userSavedOrder = await User.findById(data.userId).then( user => {
@@ -161,3 +163,24 @@ module.exports.checkout = async (data) => {
 		return false
 	}
 }
+*/
+/*// get user order
+module.exports.myOrder = (params) =>{
+
+
+	return User.findById(params.productId).then( (result) => {
+    return result
+
+	})
+}
+
+// admin: get all orders
+module.exports.orders = (params) =>{
+
+	
+	return User.find({orders[`productId`]}).then( (result) => {
+    return result
+
+	})
+}
+*/

@@ -7,9 +7,11 @@ userLogin.addEventListener("submit", (event) => {
 let email = document.querySelector('#email').value
 let password = document.querySelector('#password').value
 
+
 	if(email === "" || password === ""){
 		alert(`Please inpute required fields`)
-	} else {
+	} 
+	else {
 		fetch('http://localhost:3000/api/users/login',
 			{
 				method: "POST",

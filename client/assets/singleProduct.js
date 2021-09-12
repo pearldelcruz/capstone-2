@@ -10,6 +10,7 @@ let name = document.querySelector('#name');
 let description = document.querySelector('#description');
 let price = document.querySelector('#price');
 let productContainer = document.querySelector('#productContainer');
+let qty = document.querySelector('#qty');
 
 let token = localStorage.getItem('token');
 
@@ -31,14 +32,17 @@ fetch(`http://localhost:3000/api/products/${productId}`,
 	name.innerHTML = result.name
 	description.innerHTML = result.description
 	price.innerHTML = result.price
+
 	productContainer.innerHTML =
-	`
+	`	
 		<button class="btn btn-success btn-block" id="addToCart">Add to cart</button>
+		
+
 	`
 	let addToCart = document.querySelector(`#addToCart`);
 
 	addToCart.addEventListener("click",()=>{
-		fetch(`http://localhost:3000/api/users/checkout`,
+		fetch(`http://localhost:3000/api/orders/checkout`,
 		{
 			method:"POST",
 			headers:{
@@ -46,7 +50,8 @@ fetch(`http://localhost:3000/api/products/${productId}`,
 				"Authorization":`Bearer ${token}`
 			},
 			body:JSON.stringify({
-				productId:productId
+				productId:productId,
+				qty:qty
 
 			})
 		}).then(result=> result.json())

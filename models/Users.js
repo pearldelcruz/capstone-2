@@ -25,7 +25,7 @@ let userSchema = new mongoose.Schema(
 		mobileNo: {
 			type: String,
 			required:[true,`Mobile number is required`]
-		},
+		}/*,
 		orders: 
 		[{
 			
@@ -33,16 +33,28 @@ let userSchema = new mongoose.Schema(
 				type: String,
 				required: [true, `Order ID is required`]
 			},
+			unitPrice: {
+				type: Number,
+				required: [true, `Unit Price is required`]
+			},
+			qty: {
+				type: Number,
+				required: [true, `Quantity Price is required`]
+			},
+			totalUnitPrice: {
+				type: Number,
+				required: [true, `Total unit price is required`]
+			},
 			orderedOn: {
 				type: Date,
 				default: new Date()
 			},
-			status: {
-				type: String,
-				default: "Added to cart"
+			isProductActive: {
+				type: Boolean,
+				default: true
 			}
 		}]
-
+*/
 	}
-	);
+);
 module.exports = mongoose.model(`User`, userSchema);

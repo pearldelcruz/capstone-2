@@ -10,6 +10,8 @@ const cors = require(`cors`);
 
 let userRoutes = require(`./routes/userRoutes`)
 let productRoutes = require(`./routes/productRoutes`)
+let orderRoutes = require(`./routes/orderRoutes`)
+
 
 // middleware
 app.use(express.json());
@@ -28,4 +30,5 @@ mongoose.connect(`mongodb+srv://zuittDBBatch125:70pez0265@cluster0.l6bhm.mongodb
 
 app.use(`/api/users`, userRoutes);
 app.use(`/api/products`, productRoutes);
+app.use(`/api/orders`, orderRoutes);
 app.listen(PORT,()=>console.log(`Server is running on port ${PORT}`));
