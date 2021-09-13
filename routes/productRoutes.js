@@ -12,7 +12,7 @@ const productControllers = require('./../controllers/productControllers');
 router.post("/addProduct", auth.verify, (req, res) => {
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
-		console.log(userData)
+		// console.log(userData)
 			/*let userType = userData.isAdmin
 				console.log(userType)*/
 	if (userData === false || userData === null ) {
@@ -47,9 +47,9 @@ router.get("/:productId", (req, res) => {
 router.put("/:productId/edit", auth.verify, (req, res) => {
 
 let userData = auth.decode(req.headers.authorization)
-	console.log(userData)
+	// console.log(userData)
 	let userType = userData.isAdmin
-	console.log(userType)
+	// console.log(userType)
 	if (userType === false || userType === null ) {
 		console.log("User not authorized to perform action")
 	}
@@ -64,9 +64,9 @@ let userData = auth.decode(req.headers.authorization)
 
 router.put('/:productId/archive', auth.verify,(req,res)=>{
 	let userData = auth.decode(req.headers.authorization)
-		console.log(userData)
+		// console.log(userData)
 	let userType = userData.isAdmin
-		console.log(userType)
+		// console.log(userType)
 		if (userType === false || userType === null ) {
 			console.log("User not authorized to perform action")
 		}
@@ -79,9 +79,9 @@ router.put('/:productId/archive', auth.verify,(req,res)=>{
 //to unarchive products
 router.put('/:productId/unarchive', auth.verify,(req,res)=>{
 	let userData = auth.decode(req.headers.authorization)
-		console.log(userData)
+		// console.log(userData)
 	let userType = userData.isAdmin
-		console.log(userType)
+		// console.log(userType)
 		if (userType === false || userType === null ) {
 			console.log("User not authorized to perform action")
 		}
@@ -95,9 +95,9 @@ router.put('/:productId/unarchive', auth.verify,(req,res)=>{
 // to delete product
 router.delete('/:productId/delete', auth.verify,(req,res)=>{
 	let userData = auth.decode(req.headers.authorization)
-		console.log(userData)
+		// console.log(userData)
 	let userType = userData.isAdmin
-		console.log(userType)
+		// console.log(userType)
 		if (userType === false || userType === null ) {
 			console.log("User not authorized to perform action")
 		}

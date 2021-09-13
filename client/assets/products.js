@@ -83,7 +83,7 @@ fetch("http://localhost:3000/api/products/allProducts",
 
 				return (
 					`
-						<div class="col-md-6 my-5">
+						<div class="col-md-4 my-5 p-3">
 							<div class="card">
 								<div class="card-body">
 									<h5 class="card-title">

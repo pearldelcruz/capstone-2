@@ -53,7 +53,7 @@ module.exports.singleProduct = (params) => {
 
 //to edit course
 module.exports.editProduct = (params, reqBody) => {
-	console.log(params)
+	// console.log(params)
 
 	let updatedProduct = {
 		name: reqBody.name,

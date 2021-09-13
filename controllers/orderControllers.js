@@ -15,7 +15,7 @@ module.exports.allOrders = () => {
 
 //to get user's respective order
 module.exports.myOrder = (data) =>{
-	console.log(data)
+	// console.log(data)
 	let userId = data.id
 	return Order.find({userId}).then( (result) => {
     return result

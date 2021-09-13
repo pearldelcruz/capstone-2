@@ -35,7 +35,7 @@ router.post(`/login`,(req,res)=>{
 router.get(`/profile`, auth.verify,(req,res)=>{
 
 	const userData = auth.decode(req.headers.authorization)
-	console.log(userData.firstName);
+	// console.log(userData.firstName);
 	
 
 	userController.getProfile(userData.id).then(result => res.send(result))
@@ -64,7 +64,7 @@ router.get("/getAllUsers", auth.verify, (req, res) => {
 
 //to switch user isAdmin true to false
 router.put('/:userId/setAsAdmin', auth.verify,(req,res)=>{
-	console.log(req.params.userId)
+	// console.log(req.params.userId)
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
 	// console.log(userData)
@@ -81,10 +81,10 @@ router.put('/:userId/setAsAdmin', auth.verify,(req,res)=>{
 
 //to switch user isAdmin false to true
 router.put('/:userId/remove-admin-access', auth.verify,(req,res)=>{
-	console.log(req.params.userId)
+	// console.log(req.params.userId)
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
-	console.log(userData)
+	// console.log(userData)
 	// let userType = userData.isAdmin
 	// console.log(userType)
 	if (userData === false || userData === null ) {

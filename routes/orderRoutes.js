@@ -11,7 +11,7 @@ const auth = require(`./../auth`)
 router.get("/", auth.verify, (req, res) => {
 
 	let userData = auth.decode(req.headers.authorization).isAdmin
-		console.log(userData)
+		// console.log(userData)
 	
 	
 	if (userData === false  ) {

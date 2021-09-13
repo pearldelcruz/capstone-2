@@ -36,7 +36,7 @@ let description = document.querySelector('#description').value
 			if(result){
 				alert("Product succesfully saved");
 
-				window.location.replace('./profile.html')
+				window.location.replace('./products.html')
 			} else {
 				alert("Failed to add item. Something went wrong.")
 			}

@@ -76,13 +76,13 @@ fetch("http://localhost:3000/api/users/getAllUsers",
 
 				return (
 					`
-						<div class="col-md-6 my-5">
+						<div class="col-md-4 my-2 text-center">
 							<div class="card">
 								<div class="card-body">
 									<h5 class="card-title">
 										${users.firstName + " " + users.lastName}
 									</h5>
-									<p class="card-text text-left">
+									<p class="card-text text-center">
 										${users.email}
 									</p>
 								</div>

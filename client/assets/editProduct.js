@@ -56,7 +56,7 @@ editForm.addEventListener("submit", (event) => {
 		console.log(result)
 
 		if(result !== "undefined"){
-			alert(`Product details updated`)
+			alert(`Product details succesfully updated`)
 
 			window.location.replace('./products.html')
 		} else {
