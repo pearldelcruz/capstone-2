@@ -99,20 +99,24 @@ router.put('/:userId/remove-admin-access', auth.verify,(req,res)=>{
 
 //----Orders -----//
 
-/*//to place order
-router.post(`/checkout`, auth.verify,(req,res)=>{
+//to place order
+router.post(`/addCart`, auth.verify,(req,res)=>{
 	let userData = auth.decode(req.headers.authorization).isAdmin
 		console.log(userData)
 	
 	
-	if (userData === false  ) {
-	let data = {
-		userId: auth.decode(req.headers.authorization).id,
-		productId:req.body.productId
+	if (userData === false  ) 
+	{
+		let data = {
+					userId: auth.decode(req.headers.authorization).id,
+					productId:req.body.productId
+					// qty: req.body.qty
+					}
+
+		userController.addCart(data).then(result => res.send(result))
+		console.log(data)
 	}
-	userController.checkout(data).then(result => res.send(result))
-	// console.log(data)
-	}
+
 	else{
 		console.log("ADMIN: Please login to a regular account to place order")
 	}
@@ -120,27 +124,30 @@ router.post(`/checkout`, auth.verify,(req,res)=>{
 })
 
 
-//check order
+//get user's respective order
 
-router.get(`/myOrder`, auth.verify, (req, res)=>{
+router.get(`/myOrder`, auth.verify,(req,res)=>{
 
-	userController.myOrder(req.params.userId).then(result => res.send(result));	
+	const userData = auth.decode(req.headers.authorization)
+	// console.log(userData.firstName);
+	
 
+	userController.myOrder(userData.id).then(result => res.send(result))
 })
 
-router.get(`/orders`, auth.verify, (req, res)=>{
+//admin: get all orders
 
-	let userData = auth.decode(req.headers.authorization).isAdmin
-	console.log(userData)
-	if (userData === false || userData === null ) {
-		console.log("User not authorized")
-	}
-	else {
+// router.get("/getOrders", auth.verify, (req, res) => {
 
-	userController.orders().then(result => res.send(result));	
-	}
-
-})*/
+// 	let userData = auth.decode(req.headers.authorization).isAdmin
+	
+// 	if (userData === false || userData === null ) {
+// 		console.log("User not authorized")
+// 	}
+// 	else {
+// 	userController.getOrders().then( result => res.send(result))
+// 	}
+// })
 
 
 

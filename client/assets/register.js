@@ -17,7 +17,7 @@ regForm.addEventListener("submit",(event) =>{
 		password === password2 && mobileNo.length === 11 && password !== "" && password2 !== "" ){
 
 		// fetch(<url>, {options}).then()
-		fetch("http://localhost:3000/api/users/checkEmail", 
+		fetch("https://gentle-wave-67856.herokuapp.com/api/users/checkEmail", 
 			{
 				method: "POST",
 				headers: {
@@ -37,7 +37,7 @@ regForm.addEventListener("submit",(event) =>{
 			// console.log(result)
 			if(result === false){
 			
-				fetch("http://localhost:3000/api/users/register",
+				fetch("https://gentle-wave-67856.herokuapp.com/api/users/register",
 					{
 						method: "POST",
 						headers: {

@@ -1,13 +1,12 @@
 
 const User = require(`./../models/Users`);
-// const Product = require(`./../models/Products`);
+const Product = require(`./../models/Products`);
 const bcrypt = require(`bcrypt`);
 
 
 const auth = require(`./../auth`);
 
 //email validation/checking if exist
-
 module.exports.checkEmailExist = (reqBody) => {
 	return User.find({email:reqBody.email}).then((result)=>{
 		if (result.length != 0) {
@@ -18,7 +17,6 @@ module.exports.checkEmailExist = (reqBody) => {
 		}
 	})
 }
-
 
 //user registration
 module.exports.register = (reqBody) =>{
@@ -36,12 +34,10 @@ module.exports.register = (reqBody) =>{
 		else{
 			return true
 		}
-
 	})
 }
 
 //user login
-
 module.exports.login =(reqBody) => {
 
 	return User.findOne({email:reqBody.email}).then((result)=>{
@@ -60,7 +56,6 @@ module.exports.login =(reqBody) => {
 			}
 		}
 	})
-
 }
 
 //user profile
@@ -73,14 +68,6 @@ module.exports.getProfile = (data) =>{
 	})
 }
 
-//to retrieve all non-admin
-/*module.exports.getNonAdmin = ()=>{
-
-	return User.find({isAdmin: false}).then(result =>{
-		return result
-	})
-}
-*/
 //to retrieve all users
 module.exports.getAllUsers = ()=>{
 
@@ -96,7 +83,7 @@ module.exports.setAsAdmin = (params)=> {
 	let userType1 = {
 		isAdmin : true
 	}
-	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":true}).then((result, error) => {
+
 	return User.findByIdAndUpdate(params, userType1, {new: true}).then((result, error) => {
 		if (error) {
 			return false
@@ -113,7 +100,7 @@ module.exports.unsetAsAdmin = (params)=> {
 	let userType2 = {
 		isAdmin : false
 	}
-	// return User.findOneAndUpdate({"_id":`${params}`}, {"isAdmin":false}).then((result, error) => {
+
 	return User.findByIdAndUpdate(params, userType2, {new: true}).then((result, error) => {
 		if (error) {
 			return false
@@ -124,17 +111,22 @@ module.exports.unsetAsAdmin = (params)=> {
 }
 
 //to place order
+module.exports.addCart = async (data) => {
 
-/*module.exports.checkout = async (data) => {
-
+	const price = await Product.findById(data.productId).then(product => product.price)
+	// console.log(price)
 
 	//save user order
 	const userSavedOrder = await User.findById(data.userId).then( user => {
-		// console.log(user)
-		user.orders.push({productId: data.productId})
+
+		user.orders.push(
+				{	
+					productId: data.productId,
+					totalOrderValue: price
+				})
 
 		return user.save().then( (user, error) => {
-			console.log(user)
+			// console.log(user)
 			if(error){
 				return false
 			} else {
@@ -145,10 +137,15 @@ module.exports.unsetAsAdmin = (params)=> {
 
 	//save orders by users
 	const orderByUsers = await Product.findById(data.productId).then( product => {
-		product.orders.push({userId: data.userId})
+		
+		product.orders.push(
+			{
+				userId: data.userId,
+				totalOrderValue: price
+			})
 
 		return product.save().then( (product, error) => {
-			console.log(product)
+			// console.log(product)
 			if(error){
 				return false
 			} else {
@@ -163,24 +160,16 @@ module.exports.unsetAsAdmin = (params)=> {
 		return false
 	}
 }
-*/
-/*// get user order
-module.exports.myOrder = (params) =>{
 
 
-	return User.findById(params.productId).then( (result) => {
-    return result
 
-	})
-}
+//get user's respective order
+module.exports.myOrder = (data) =>{
 
-// admin: get all orders
-module.exports.orders = (params) =>{
-
+	return User.findById(data).then(result => {
+		
+		return result.orders
 	
-	return User.find({orders[`productId`]}).then( (result) => {
-    return result
-
 	})
 }
-*/
+

@@ -1,6 +1,6 @@
 const express = require(`express`);
 const mongoose = require(`mongoose`);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 let app = express();
 const cors = require(`cors`);
@@ -10,7 +10,7 @@ const cors = require(`cors`);
 
 let userRoutes = require(`./routes/userRoutes`)
 let productRoutes = require(`./routes/productRoutes`)
-let orderRoutes = require(`./routes/orderRoutes`)
+// let orderRoutes = require(`./routes/orderRoutes`)
 
 
 // middleware
@@ -30,5 +30,5 @@ mongoose.connect(`mongodb+srv://zuittDBBatch125:70pez0265@cluster0.l6bhm.mongodb
 
 app.use(`/api/users`, userRoutes);
 app.use(`/api/products`, productRoutes);
-app.use(`/api/orders`, orderRoutes);
+// app.use(`/api/orders`, orderRoutes);
 app.listen(PORT,()=>console.log(`Server is running on port ${PORT}`));

@@ -12,7 +12,7 @@ let password = document.querySelector('#password').value
 		alert(`Please inpute required fields`)
 	} 
 	else {
-		fetch('http://localhost:3000/api/users/login',
+		fetch('https://gentle-wave-67856.herokuapp.com/api/users/login',
 			{
 				method: "POST",
 				headers: {
@@ -33,7 +33,7 @@ let password = document.querySelector('#password').value
 			// console.log(result.access)
 
 			if(token){
-				fetch('http://localhost:3000/api/users/profile', 
+				fetch('https://gentle-wave-67856.herokuapp.com/api/users/profile', 
 					{
 						method: "GET",
 						headers: {

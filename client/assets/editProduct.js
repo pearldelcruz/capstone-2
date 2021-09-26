@@ -12,7 +12,7 @@ let name = document.querySelector('#name');
 let description = document.querySelector('#description');
 let price = document.querySelector('#price');
 
-fetch(`http://localhost:3000/api/products/${productId}`,
+fetch(`https://gentle-wave-67856.herokuapp.com/api/products/${productId}`,
 	{
 		method: "GET",
 		headers: {
@@ -37,7 +37,7 @@ editForm.addEventListener("submit", (event) => {
 	description = description.value
 	price = price.value
 
-	fetch(`http://localhost:3000/api/products/${productId}/edit`,
+	fetch(`https://gentle-wave-67856.herokuapp.com/api/products/${productId}/edit`,
 		{
 			method: "PUT",
 			headers: {

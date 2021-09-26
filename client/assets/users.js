@@ -24,7 +24,7 @@ let cardFooter;
 	`
 }
 */
-fetch("http://localhost:3000/api/users/getAllUsers", 
+fetch("https://gentle-wave-67856.herokuapp.com/api/users/getAllUsers", 
 	{
 		method: "GET",
 		headers: {

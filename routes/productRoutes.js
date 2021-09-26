@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 let auth = require('./../auth');
-// const User = require(`./../models/Users`);
+const User = require(`./../models/Users`);
 
 const productControllers = require('./../controllers/productControllers');
 
@@ -105,6 +105,8 @@ router.delete('/:productId/delete', auth.verify,(req,res)=>{
 	productControllers.deleteProduct(req.params.productId).then(result => res.send(result));
 	}
 })
+
+
 
 module.exports = router;
 

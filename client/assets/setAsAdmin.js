@@ -6,7 +6,7 @@ console.log(userId);
 let token = localStorage.getItem('token');
 
 
-fetch(`http://localhost:3000/api/users/${userId}/setAsAdmin`,
+fetch(`https://gentle-wave-67856.herokuapp.com/api/users/${userId}/setAsAdmin`,
 	{
 		method: "PUT",
 		headers: {

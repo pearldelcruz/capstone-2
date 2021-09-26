@@ -15,7 +15,7 @@ let description = document.querySelector('#description').value
 	if(name !== "" && price !== "" && description !== ""){
 	//use fetch to send the data to the server
 	// 
-		fetch("http://localhost:3000/api/products/addProduct", 
+		fetch("https://gentle-wave-67856.herokuapp.com/api/products/addProduct", 
 			{
 				method: "POST",
 				headers: {

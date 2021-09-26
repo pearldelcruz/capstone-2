@@ -33,6 +33,10 @@ let productSchema = new mongoose.Schema({
 				type:String,
 				required:[true, `User ID is required`]
 			},
+			totalOrderValue:{
+
+				type:Number,
+			},
 			orderedOn:{
 
 				type:Date,

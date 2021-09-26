@@ -31,7 +31,7 @@ if(adminUser === false || adminUser === null){
 	`
 }
 
-fetch('http://localhost:3000/api/users/profile',
+fetch('https://gentle-wave-67856.herokuapp.com/api/users/profile',
 	{
 		method: "GET",
 		headers: {

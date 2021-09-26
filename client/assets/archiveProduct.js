@@ -6,7 +6,7 @@ console.log(productId);
 
 let token = localStorage.getItem('token');
 
-fetch(`http://localhost:3000/api/products/${productId}/archive`,
+fetch(`https://gentle-wave-67856.herokuapp.com/api/products/${productId}/archive`,
 	{
 		method: "PUT",
 		headers: {

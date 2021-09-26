@@ -14,7 +14,7 @@ let qty = document.querySelector('#qty');
 
 let token = localStorage.getItem('token');
 
-fetch(`http://localhost:3000/api/products/${productId}`,
+fetch(`https://gentle-wave-67856.herokuapp.com/api/products/${productId}`,
 	{
 		method: "GET",
 		headers: {
@@ -42,7 +42,7 @@ fetch(`http://localhost:3000/api/products/${productId}`,
 	let addToCart = document.querySelector(`#addToCart`);
 
 	addToCart.addEventListener("click",()=>{
-		fetch(`http://localhost:3000/api/orders/checkout`,
+		fetch(`https://gentle-wave-67856.herokuapp.com/api/orders/checkout`,
 		{
 			method:"POST",
 			headers:{
