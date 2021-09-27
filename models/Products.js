@@ -33,6 +33,10 @@ let productSchema = new mongoose.Schema({
 				type:String,
 				required:[true, `User ID is required`]
 			},
+			buyerEmail:{
+
+				type:String
+			},
 			totalOrderValue:{
 
 				type:Number,

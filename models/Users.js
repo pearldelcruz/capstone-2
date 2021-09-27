@@ -33,10 +33,12 @@ let userSchema = new mongoose.Schema(
 				type: String,
 				required: [true, `Order ID is required`]
 			},
-			// unitPrice: {
-			// 	type: Number,
-			// 	required: [true, `Unit Price is required`]
-			// },
+			name: {
+				type: String
+			},
+			description: {
+				type: String 
+			},
 			qty: {
 				type: Number
 			},

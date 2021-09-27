@@ -129,7 +129,7 @@ router.post(`/addCart`, auth.verify,(req,res)=>{
 router.get(`/myOrder`, auth.verify,(req,res)=>{
 
 	const userData = auth.decode(req.headers.authorization)
-	// console.log(userData.firstName);
+	console.log(userData.id);
 	
 
 	userController.myOrder(userData.id).then(result => res.send(result))

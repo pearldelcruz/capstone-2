@@ -113,8 +113,13 @@ module.exports.unsetAsAdmin = (params)=> {
 //to place order
 module.exports.addCart = async (data) => {
 
-	const price = await Product.findById(data.productId).then(product => product.price)
-	// console.log(price)
+	const productInfo = await Product.findById(data.productId).then(product => product)
+	const price = productInfo.price;
+	const name = productInfo.name;
+	const description = productInfo.description;
+	console.log(name, price, description)
+	const userEmail = await User.findById(data.userId).then(user => user.email)
+	console.log(userEmail)
 
 	//save user order
 	const userSavedOrder = await User.findById(data.userId).then( user => {
@@ -122,6 +127,8 @@ module.exports.addCart = async (data) => {
 		user.orders.push(
 				{	
 					productId: data.productId,
+					name: name,
+					description:description,
 					totalOrderValue: price
 				})
 
@@ -141,7 +148,9 @@ module.exports.addCart = async (data) => {
 		product.orders.push(
 			{
 				userId: data.userId,
-				totalOrderValue: price
+				buyerEmail: userEmail,
+				totalOrderValue: price,
+
 			})
 
 		return product.save().then( (product, error) => {
@@ -166,10 +175,12 @@ module.exports.addCart = async (data) => {
 //get user's respective order
 module.exports.myOrder = (data) =>{
 
-	return User.findById(data).then(result => {
-		
-		return result.orders
-	
-	})
+
+	console.log(data)
+	const info = User.findById(data).then(result => result.orders)
+
+	return info
+
+
 }
 
